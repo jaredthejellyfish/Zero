@@ -6,9 +6,6 @@ RUN apk add --no-cache git
 # Set the working directory
 WORKDIR /app
 
-# Clone the Zero repo
-RUN git clone https://github.com/Mail-0/Zero.git .
-
 # Install project dependencies
 RUN bun install && bun db:dependencies
 
