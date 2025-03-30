@@ -65,15 +65,41 @@ services:
       upstash-proxy:
         condition: service_started
     environment:
+      # App URL
+      NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
+      
+      # Database
       NODE_ENV: ${NODE_ENV:-production}
       DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-zerodotemail}
+      
+      # Redis
       REDIS_URL: http://upstash-proxy:80
       REDIS_TOKEN: ${REDIS_TOKEN:-upstash-local-token}
-      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:-X1v2b9cFzUYDMfgRpUFkfrUOArq61AD8}
+      
+      # Authentication
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET}
+      BETTER_AUTH_URL: ${BETTER_AUTH_URL:-http://localhost:3000}
+      BETTER_AUTH_TRUSTED_ORIGINS: ${BETTER_AUTH_TRUSTED_ORIGINS:-http://localhost:3000}
+      
+      # Google OAuth
       GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
       GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
-      GOOGLE_REDIRECT_URI: ${GOOGLE_REDIRECT_URI}
-      SERVICE_FQDN: ${SERVICE_FQDN}
+      GOOGLE_REDIRECT_URI: ${GOOGLE_REDIRECT_URI:-http://localhost:3000/api/v1/mail/auth/google/callback}
+      
+      # GitHub OAuth (Optional)
+      GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID}
+      GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET}
+      GITHUB_REDIRECT_URI: ${GITHUB_REDIRECT_URI:-http://localhost:3000/api/auth/callback/github}
+      
+      # Email
+      RESEND_API_KEY: ${RESEND_API_KEY}
+      
+      # AI
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      AI_SYSTEM_PROMPT: ${AI_SYSTEM_PROMPT}
+      
+      # Service FQDN for deployment
+      SERVICE_FQDN: ${SERVICE_FQDN:-localhost:3000}
 
 volumes:
   valkey-data:
