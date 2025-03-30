@@ -74,9 +74,6 @@ services:
       GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
       GOOGLE_REDIRECT_URI: ${GOOGLE_REDIRECT_URI}
       SERVICE_FQDN: ${SERVICE_FQDN}
-    # No volumes for production deployments with Coolify
-    labels:
-      "coolify.enable": "true"
 
 volumes:
   valkey-data:
