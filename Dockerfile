@@ -1,13 +1,16 @@
 FROM oven/bun:1.2.0
 
-# Set the working directory
+# ✅ Use apt instead of apk for Debian-based image
+RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
-# Install project dependencies
+# Clone the repo
+RUN git clone https://github.com/your-username/Zero.git .
+
+# Install deps
 RUN bun install && bun db:dependencies
 
-# Expose the default port
 EXPOSE 3000
 
-# Start the dev server
 CMD ["bun", "dev"]
