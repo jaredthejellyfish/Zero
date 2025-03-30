@@ -76,7 +76,7 @@ services:
       SERVICE_FQDN: ${SERVICE_FQDN}
     # No volumes for production deployments with Coolify
     labels:
-      coolify.enable: "true"
+      "coolify.enable": "true"
 
 volumes:
   valkey-data:
