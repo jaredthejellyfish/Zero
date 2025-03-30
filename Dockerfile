@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 
 # Clone the repo
-RUN git clone https://github.com/your-username/Zero.git .
+RUN git clone https://github.com/jaredthejellyfish/Zero.git .
 
 # Install deps
 RUN bun install && bun db:dependencies
